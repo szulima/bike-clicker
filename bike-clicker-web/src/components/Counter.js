@@ -1,12 +1,12 @@
 import { useRecoilValue } from "recoil";
 import { countState } from "../atoms";
 
-export default function Clicker() {
-  const clicks = useRecoilValue(countState);
+export default function Counter() {
+  const count = useRecoilValue(countState);
 
   return (
     <>
-      <p>Clicks: {clicks}</p>
+      <p>Bikes: {count}</p>
     </>
   );
 }
