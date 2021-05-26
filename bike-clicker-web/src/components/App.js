@@ -1,7 +1,7 @@
 import { Route, Switch, Link } from "react-router-dom";
 import "../styles.css";
 import HomePage from "../pages/HomePage";
-import ShopPage from "../pages/ShopPage";
+import StorePage from "../pages/StorePage";
 import AchievementsPage from "../pages/AchievementsPage";
 import TabTitle from "../components/TabTitle";
 
@@ -16,7 +16,7 @@ export default function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/shop">Shop</Link>
+            <Link to="/store">Store</Link>
           </li>
           <li>
             <Link to="/achievements">Achievements</Link>
@@ -28,8 +28,8 @@ export default function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route path="/shop">
-          <ShopPage />
+        <Route path="/store">
+          <StorePage />
         </Route>
         <Route path="/achievements">
           <AchievementsPage />
