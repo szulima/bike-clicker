@@ -11,17 +11,10 @@ import TabTitle from "../components/TabTitle";
 export default function App() {
   const setCount = useSetRecoilState(countState);
 
+  // on app start check if game progress was saved in localStorage and if so, use it
   useEffect(() => {
-    // localStorage.removeItem("save");
     let save = JSON.parse(localStorage.getItem("save"));
     if (save) setCount(save);
-    // let newSave = {
-    //   count: 20,
-    // };
-    // let jsonSave = JSON.stringify(newSave);
-    // localStorage.setItem("save", jsonSave);
-    // let gotSave = JSON.parse(localStorage.getItem("save"));
-    // setCount(gotSave.count);
   }, []);
 
   return (
