@@ -11,6 +11,18 @@ import TabTitle from "../components/TabTitle";
 export default function App() {
   const setCount = useSetRecoilState(countState);
 
+  // on app start check if game progress was saved on a server and if so, use it
+  useEffect(() => {
+    async function fetchProgress() {
+      const endpoint = `<host>/api/v1/progress`;
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      return data.click_count;
+    }
+    // const save = fetchProgress();
+    // if(save) setCount(save);
+  });
+
   // on app start check if game progress was saved in localStorage and if so, use it
   useEffect(() => {
     let save = JSON.parse(localStorage.getItem("save"));
