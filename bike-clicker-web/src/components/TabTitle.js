@@ -6,8 +6,8 @@ export default function TabTitle() {
   const count = useRecoilValue(countState);
 
   function setTitle(count) {
-    let bike = count === 1 ? "bike" : "bikes";
-    document.title = `${count} ${bike} | Bike Clicker`;
+    const bikeString = count === 1 ? "bike" : "bikes";
+    document.title = `${count} ${bikeString} | Bike Clicker`;
   }
 
   useEffect(() => {
