@@ -1,7 +1,7 @@
 import { Route, Switch, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
-import { countState } from "../atoms";
+import { countState, isSaveOnServerState } from "../atoms";
 import "../styles.css";
 import HomePage from "../pages/HomePage";
 import StorePage from "../pages/StorePage";
@@ -10,6 +10,7 @@ import TabTitle from "../components/TabTitle";
 
 export default function App() {
   const setCount = useSetRecoilState(countState);
+  const setIsSaveOnServer = useSetRecoilState(isSaveOnServerState);
 
   // on app start check if game progress was saved on a server and if so, use it
   useEffect(() => {
@@ -20,7 +21,10 @@ export default function App() {
       return data.click_count;
     }
     // const save = fetchProgress();
-    // if(save) setCount(save);
+    // if(save) {
+    //   setCount(save);
+    //   setIsSaveOnServer(true);
+    // }
   });
 
   // on app start check if game progress was saved in localStorage and if so, use it

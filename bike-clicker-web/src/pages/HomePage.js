@@ -3,6 +3,7 @@ import Bike from "../components/Bike";
 import Level from "../components/Level";
 import SaveProgress from "../components/SaveProgress";
 import DeleteSavedGame from "../components/DeleteSavedGame";
+import SaveProgressOnServer from "../components/SaveProgressOnServer";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Level />
       <SaveProgress />
       <DeleteSavedGame />
+      <SaveProgressOnServer />
     </>
   );
 }
