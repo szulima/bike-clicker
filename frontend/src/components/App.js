@@ -78,7 +78,7 @@ export default function App() {
   );
 }
 
-function startGame() {
+async function startGame() {
   const user_key = JSON.parse(localStorage.getItem("user_key"));
   if (user_key) {
     const setCount = useSetRecoilState(countState);
