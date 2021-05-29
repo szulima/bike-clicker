@@ -1,11 +1,11 @@
 import { useRecoilValue } from "recoil";
 import { isSaveOnServerState, countState } from "../atoms";
 
-export default function SaveProgressOnServer() {
+export default function ServerSave() {
   const isSaveOnServer = useRecoilValue(isSaveOnServerState);
   const count = useRecoilValue(countState);
 
-  async function handleSaveProgressOnServerClick() {
+  async function handleServerSave() {
     const endpoint = `<host>/api/v1/progress`;
     if (isSaveOnServer) {
       // PATCH progress
@@ -33,8 +33,8 @@ export default function SaveProgressOnServer() {
   }
 
   return (
-    <button disabled onClick={handleSaveProgressOnServerClick}>
-      Save Progress On Server
+    <button disabled onClick={handleServerSave}>
+      Save On Server
     </button>
   );
 }

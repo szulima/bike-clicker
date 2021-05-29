@@ -1,11 +1,11 @@
 import { useRecoilValue } from "recoil";
 import { countState } from "../atoms";
 
-export default function SaveProgress() {
+export default function LocalSave() {
   const count = useRecoilValue(countState);
 
-  function saveProgress() {
+  function handleSaveLocally() {
     localStorage.setItem("save", count);
   }
-  return <button onClick={saveProgress}>Save Progress Locally</button>;
+  return <button onClick={handleSaveLocally}>Save Game Locally</button>;
 }
