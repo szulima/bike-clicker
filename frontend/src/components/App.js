@@ -11,27 +11,10 @@ import TabTitle from "../components/TabTitle";
 
 export default function App() {
   const setCount = useSetRecoilState(countState);
-  // const setIsSaveOnServer = useSetRecoilState(isSaveOnServerState);
 
   useEffect(() => {
     // startGame();
   }, []);
-
-  // // ** on app start check if game progress exists on server, if so, use it **
-  // useEffect(() => {
-  //   async function fetchProgress() {
-  //     const endpoint = `<host>/api/v1/progress`;
-  //     const response = await fetch(endpoint);
-  //     const progress = await response.json();
-  //     return progress.click_count;
-  //   }
-  //   // ** DISABLED functionality **
-  //   // const save = fetchProgress();
-  //   // if(save) {
-  //   //   setCount(save);
-  //   //   setIsSaveOnServer(true);
-  //   // }
-  // });
 
   // ** on app start check if game progress object is in localStorage and if so, use it **
   useEffect(() => {
@@ -79,24 +62,43 @@ export default function App() {
 }
 
 async function startGame() {
-  const user_key = JSON.parse(localStorage.getItem("user_key"));
-  if (user_key) {
-    const setCount = useSetRecoilState(countState);
-    // const setIsSaveOnServer = useSetRecoilState(isSaveOnServerState);
+  const user_id = JSON.parse(localStorage.getItem("user_id"));
+  const setCount = useSetRecoilState(countState);
+  // const setIsSaveOnServer = useSetRecoilState(isSaveOnServerState);
 
-    const saved_click_count = await fetchProgress(user_key);
+  if (user_id) {
+    const saved_count = await fetchProgress(user_id);
 
-    if (saved_click_count) {
-      setCount(saved_click_count);
+    if (saved_count) {
+      setCount(saved_count);
       // setIsSaveOnServer(true);
     }
   } else {
+    const new_user_id = createUserId();
+    await saveUserOnServer(new_user_id);
+    localStorage.setItem("user_id", new_user_id);
   }
 }
 
-async function fetchProgress(user_key) {
-  const endpoint = `<host>/api/v1/progress/${user_key}/save`;
+async function fetchProgress(user_id) {
+  const endpoint = `<host>/api/v1/progress/${user_id}/save`;
   const response = await fetch(endpoint);
   const save = await response.json();
-  return save.click_count;
+  return save.count;
+}
+
+function createUserId() {
+  const id = Math.floor(Math.random() * 16777215).toString(16);
+  return id;
+}
+
+async function saveUserOnServer(user_id) {
+  const endpoint = `<host>/api/v1/progress/${user_id}`;
+  await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ user_id }),
+  });
 }
