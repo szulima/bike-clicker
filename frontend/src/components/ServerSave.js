@@ -1,12 +1,15 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { isSaveOnServerState, countState } from "../atoms";
 
 export default function ServerSave() {
-  const isSaveOnServer = useRecoilValue(isSaveOnServerState);
+  const [isSaveOnServer, setIsSaveOnServer] = useRecoilState(
+    isSaveOnServerState
+  );
   const count = useRecoilValue(countState);
+  const user_id = localStorage.getItem("user_id");
 
   async function handleServerSave() {
-    const endpoint = `<host>/api/v1/progress`;
+    const endpoint = `<host>/api/v1/progress/${user_id}`;
     if (isSaveOnServer) {
       // PATCH progress
       await fetch(endpoint, {
@@ -29,6 +32,7 @@ export default function ServerSave() {
           click_count: count,
         }),
       });
+      setIsSaveOnServer(true);
     }
   }
 

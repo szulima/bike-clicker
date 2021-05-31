@@ -1,6 +1,7 @@
 import LocalSave from "../components/LocalSave";
 import DeleteLocalSave from "../components/DeleteLocalSave";
 import ServerSave from "../components/ServerSave";
+import ServerLoad from "../components/ServerLoad";
 
 export default function SettingsPage() {
   return (
@@ -17,6 +18,7 @@ export default function SettingsPage() {
         <LocalSave />
         <DeleteLocalSave />
         <ServerSave />
+        <ServerLoad />
       </div>
     </>
   );

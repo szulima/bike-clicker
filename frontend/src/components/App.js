@@ -12,6 +12,7 @@ import TabTitle from "../components/TabTitle";
 export default function App() {
   const setCount = useSetRecoilState(countState);
 
+  // ** DISABLED: on app start check if game progress is on server and if so, use it **
   useEffect(() => {
     // startGame();
   }, []);
@@ -62,16 +63,16 @@ export default function App() {
 }
 
 async function startGame() {
-  const user_id = JSON.parse(localStorage.getItem("user_id"));
+  const user_id = localStorage.getItem("user_id");
   const setCount = useSetRecoilState(countState);
-  // const setIsSaveOnServer = useSetRecoilState(isSaveOnServerState);
+  const setIsSaveOnServer = useSetRecoilState(isSaveOnServerState);
 
   if (user_id) {
     const saved_count = await fetchProgress(user_id);
 
     if (saved_count) {
       setCount(saved_count);
-      // setIsSaveOnServer(true);
+      setIsSaveOnServer(true);
     }
   } else {
     const new_user_id = createUserId();
@@ -81,10 +82,10 @@ async function startGame() {
 }
 
 async function fetchProgress(user_id) {
-  const endpoint = `<host>/api/v1/progress/${user_id}/save`;
+  const endpoint = `<host>/api/v1/progress/${user_id}`;
   const response = await fetch(endpoint);
   const save = await response.json();
-  return save.count;
+  return save.click_count;
 }
 
 function createUserId() {
