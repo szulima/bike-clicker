@@ -1,29 +1,18 @@
 import { useRecoilValue, useRecoilState } from "recoil";
 import { useEffect } from "react";
-import { countState, notificationsState } from "../atoms";
+import { countState, notificationsState, achievementsState } from "../atoms";
 
 export default function AchievementNotifications() {
   const count = useRecoilValue(countState);
   const [notifications, setNotifications] = useRecoilState(notificationsState);
-
-  const achievements = [
-    {
-      id: 1,
-      condition: count === 0,
-      name: "Start a game",
-    },
-    {
-      id: 2,
-      condition: count === 1,
-      name: "Wake and bike!",
-    },
-  ];
+  const achievements = useRecoilValue(achievementsState);
 
   useEffect(() => {
     function checkConditions() {
       let newNotifications = [];
       achievements.forEach((a) => {
-        if (a.condition) newNotifications.unshift(a);
+        const condition = a.condition;
+        if (condition) newNotifications.unshift(a);
       });
       return newNotifications;
     }
