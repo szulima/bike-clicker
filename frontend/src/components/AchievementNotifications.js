@@ -11,8 +11,9 @@ export default function AchievementNotifications() {
     function checkConditions() {
       let newNotifications = [];
       achievements.forEach((a) => {
-        const condition = a.condition;
-        if (condition) newNotifications.unshift(a);
+        if (a.condition) {
+          newNotifications.unshift(a);
+        }
       });
       return newNotifications;
     }

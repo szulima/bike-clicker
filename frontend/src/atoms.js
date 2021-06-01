@@ -1,6 +1,9 @@
 import { atom, selector } from "recoil";
 import screwdriver from "./assets/screwdriver.png";
 import bike from "./assets/bike.png";
+import chinese from "./assets/chinese.png";
+import workshop from "./assets/workshop.png";
+import factory from "./assets/factory.png";
 
 export const countState = atom({
   key: "countState",
@@ -29,7 +32,7 @@ export const achievementsState = selector({
         achievementCondition: count >= 0,
         name: "Start a game",
         image: bike,
-        what: "You decided to play the game, congrats!",
+        what: "You decided to go into bike business, congrats!",
       },
       {
         id: 2,
@@ -41,4 +44,34 @@ export const achievementsState = selector({
       },
     ];
   },
+});
+
+export const buildingsState = atom({
+  key: "buildingsState",
+  default: [
+    {
+      id: 1,
+      name: "worker",
+      cost: 10,
+      img: chinese,
+      owned: 0,
+      bikesPerSecond: 0.1,
+    },
+    {
+      id: 2,
+      name: "workshop",
+      cost: 100,
+      img: workshop,
+      owned: 0,
+      bikesPerSecond: 1,
+    },
+    {
+      id: 3,
+      name: "factory",
+      cost: 1000,
+      img: factory,
+      owned: 0,
+      bikesPerSecond: 10,
+    },
+  ],
 });
