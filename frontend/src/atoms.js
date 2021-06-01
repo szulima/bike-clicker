@@ -9,3 +9,8 @@ export const isSaveOnServerState = atom({
   key: "isSaveOnServerState",
   default: false,
 });
+
+export const notificationsState = atom({
+  key: "notificationsState",
+  default: [],
+});

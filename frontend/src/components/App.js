@@ -8,6 +8,7 @@ import StorePage from "../pages/StorePage";
 import AchievementsPage from "../pages/AchievementsPage";
 import SettingsPage from "../pages/SettingsPage";
 import TabTitle from "../components/TabTitle";
+import AchievementNotifications from "../components/AchievementNotifications";
 
 export default function App() {
   const setCount = useSetRecoilState(countState);
@@ -58,6 +59,8 @@ export default function App() {
           <SettingsPage />
         </Route>
       </Switch>
+
+      <AchievementNotifications />
     </>
   );
 }
