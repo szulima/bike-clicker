@@ -46,32 +46,7 @@ export const achievementsState = selector({
   },
 });
 
-// export const buildingsState = atom({
-//   key: "buildingsState",
-//   default: [
-//     {
-//       id: 1,
-//       name: "worker",
-//       cost: 10,
-//       img: chinese,
-//       owned: 0,
-//       bikesPerSecond: 0.1,
-//     },
-//     {
-//       id: 2,
-//       name: "workshop",
-//       cost: 100,
-//       img: workshop,
-//       owned: 0,
-//       bikesPerSecond: 1,
-//     },
-//     {
-//       id: 3,
-//       name: "factory",
-//       cost: 1000,
-//       img: factory,
-//       owned: 0,
-//       bikesPerSecond: 10,
-//     },
-//   ],
-// });
+export const passiveIncomeState = atom({
+  key: "passiveIncomeState",
+  default: 0,
+});

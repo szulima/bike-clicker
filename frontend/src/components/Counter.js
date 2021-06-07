@@ -1,12 +1,13 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect, useRef } from "react";
-import { countState } from "../atoms";
+import { countState, passiveIncomeState } from "../atoms";
 
 export default function Counter() {
   const [count, setCount] = useRecoilState(countState);
+  let passiveIncome = useRecoilValue(passiveIncomeState);
 
   useInterval(() => {
-    setCount(count + 1);
+    setCount(count + passiveIncome);
   }, 1000);
 
   return (
