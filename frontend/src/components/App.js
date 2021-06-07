@@ -60,7 +60,7 @@ export default function App() {
         </Route>
       </Switch>
 
-      <AchievementNotifications />
+      {/* <AchievementNotifications /> */}
     </>
   );
 }
