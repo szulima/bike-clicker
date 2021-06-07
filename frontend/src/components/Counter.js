@@ -6,7 +6,7 @@ export default function Counter() {
   const [count, setCount] = useRecoilState(countState);
 
   useInterval(() => {
-    // setCount(count + 1);
+    setCount(count + 1);
   }, 1000);
 
   return (

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { countState, isSaveOnServerState } from "../atoms";
 import "../styles.css";
+import Counter from "./Counter";
 import HomePage from "../pages/HomePage";
 import StorePage from "../pages/StorePage";
 import AchievementsPage from "../pages/AchievementsPage";
@@ -44,6 +45,8 @@ export default function App() {
           </li>
         </ul>
       </nav>
+
+      <Counter />
 
       <Switch>
         <Route exact path="/">
