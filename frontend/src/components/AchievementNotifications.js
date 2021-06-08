@@ -1,9 +1,13 @@
 import { useRecoilValue, useRecoilState } from "recoil";
 import { useEffect } from "react";
-import { countState, notificationsState, achievementsState } from "../atoms";
+import {
+  notificationsState,
+  achievementsState,
+  cumulativeCountState,
+} from "../atoms";
 
 export default function AchievementNotifications() {
-  const count = useRecoilValue(countState);
+  const cumulativeCount = useRecoilValue(cumulativeCountState);
   const [notifications, setNotifications] = useRecoilState(notificationsState);
   const achievements = useRecoilValue(achievementsState);
 
@@ -19,7 +23,7 @@ export default function AchievementNotifications() {
     }
     const newNotifications = checkConditions();
     setNotifications((notifications) => notifications.concat(newNotifications));
-  }, [count]);
+  }, [cumulativeCount]);
 
   function handleRemoveFromNotifications(e) {
     const id = e.target.parentElement.id;

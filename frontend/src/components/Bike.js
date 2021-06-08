@@ -1,12 +1,14 @@
-import { useRecoilState } from "recoil";
-import { countState } from "../atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { countState, cumulativeCountState } from "../atoms";
 import bike from "../assets/bike.png";
 
 export default function Bike() {
   const [count, setCount] = useRecoilState(countState);
+  const setCumulativeCount = useSetRecoilState(cumulativeCountState);
 
   function handleBikeClick(e) {
     setCount(count + 1);
+    setCumulativeCount(count + 1);
   }
 
   return (
